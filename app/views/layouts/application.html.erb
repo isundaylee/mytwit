@@ -47,6 +47,7 @@
 		<div class="row">
 			<div class="span12">
 				<% flash.each do |key, value| %>
+				<% next unless ['success', 'warning', 'info', 'error'].include?(key.to_s) %>
 				<div class="alert alert-<%= key.to_s %>">
 					<%= value %>
 				</div>

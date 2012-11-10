@@ -16,7 +16,10 @@
 		<tr>
 			<td><%= user.name %></td>
 			<td><%= user.email %></td>
-			<td><%= link_to 'Delete User', user, class: 'btn btn-mini', method: :delete %></td>
+			<td>
+				<%= link_to 'Delete User', user, class: 'btn btn-mini', method: :delete %>
+				<%= link_to 'Timeline', show_timeline_path(user), class: 'btn btn-mini', method: :delete %>
+			</td>
 		</tr>
 		<% end %>
 	</table>

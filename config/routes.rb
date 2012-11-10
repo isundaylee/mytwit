@@ -13,6 +13,8 @@ Mytwit::Application.routes.draw do
   
   get '/timeline', to: 'timeline#index'
   
+  match '/timeline/:id', to: 'timeline#show', as: :show_timeline
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

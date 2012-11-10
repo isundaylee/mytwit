@@ -45,7 +45,14 @@ table td a.btn {
 }
 
 .tweetsheet-sheet {
-	width: 690px !important;
+	width: 770px !important;
+}
+
+.tweetsheet-wordcount {
+}
+
+.tweetsheet-wordcount-alerting {
+	color: red;
 }
 
 .tweet-author {
@@ -54,4 +61,13 @@ table td a.btn {
 
 .pagination {
 	text-align: center;
+}
+
+.tweet-timecode {
+	color: gray;
+	font-weight: normal;
+}
+
+.tweet-button {
+	margin-left: 10px;
 }
