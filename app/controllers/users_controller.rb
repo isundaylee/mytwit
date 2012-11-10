@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   
+  before_filter :require_admin, only: [:destroy]
+  before_filter :require_signed_in, only: [:edit]
+  
   def index
     @users = User.all
   end
@@ -23,6 +26,23 @@ class UsersController < ApplicationController
       redirect_to users_url
     else
       render 'new'
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+    require_admin unless @user == current_user
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    require_admin unless @user == current_user
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile successfully updated. "
+      sign_in @user
+      redirect_to root_url
+    else
+      render 'edit'
     end
   end
   

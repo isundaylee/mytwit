@@ -1,5 +1,5 @@
 Mytwit::Application.routes.draw do
-  resources :users, only: [:index, :show, :new, :create, :destroy]
+  resources :users, only: [:index, :show, :new, :create, :destroy, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
   
   root to: 'users#index'
