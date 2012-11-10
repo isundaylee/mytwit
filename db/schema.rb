@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110135423) do
+ActiveRecord::Schema.define(:version => 20121110193503) do
 
   create_table "tweets", :force => true do |t|
     t.string   "content"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20121110135423) do
     t.datetime "updated_at",                     :null => false
     t.string   "remember_token"
     t.integer  "privilege",       :default => 0
+    t.string   "avatar"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

@@ -1,7 +1,13 @@
 Mytwit::Application.routes.draw do
   get "pages/homepage"
 
-  resources :users, only: [:index, :show, :new, :create, :destroy, :edit, :update]
+  resources :users, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
+    member do
+      get 'edit_avatar'
+      post 'update_avatar'
+    end
+  end
+    
   resources :sessions, only: [:new, :create, :destroy]
   resources :tweets, only: [:create]
   

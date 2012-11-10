@@ -91,3 +91,7 @@ table td a.btn {
   display: inline;
   margin-right: 10px;
 }
+
+.hidden {
+	display: none;
+}

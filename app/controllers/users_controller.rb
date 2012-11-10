@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   
   before_filter :require_admin, only: [:index, :destroy]
-  before_filter :require_signed_in, only: [:edit, :update]
+  before_filter :require_signed_in, only: [:edit, :update, :edit_avatar, :update_avatar]
+  around_filter :rescue_user_not_found, only: [:destroy, :edit, :update, :show, :edit_avatar, :update_avatar]
   
   def index
     @users = User.all
@@ -45,5 +46,37 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def show
+    @user = User.find(params[:id])
+  end
+  
+  def edit_avatar
+    @user = User.find(params[:id])
+    require_admin unless @user == current_user
+  end
+  
+  def update_avatar
+    @user = User.find(params[:id])
+    require_admin unless @user == current_user
+    @user.avatar = params[:user][:avatar]
+    if @user.save validate: false
+      flash[:success] = 'You have successfully changed your avatar! '
+      sign_in @user
+    else
+      flash[:error] = @user.errors.full_messages.join('<br />').html_safe
+    end
+
+    redirect_to edit_avatar_user_url(@user)
+  end
+  
+  private
+  
+    def rescue_user_not_found
+      yield
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Invalid user. "
+      redirect_to root_url
+    end
   
 end
