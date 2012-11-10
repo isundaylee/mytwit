@@ -47,3 +47,11 @@ table td a.btn {
 .tweetsheet-sheet {
 	width: 690px !important;
 }
+
+.tweet-author {
+	font-weight: bold; 
+}
+
+.pagination {
+	text-align: center;
+}

@@ -12,6 +12,43 @@
 			<% end %>
 </div>
 
+<% if @tweets.any? %>
+
+<% @tweets.each do |tweet| %>
+
+<hr />
+<div class="row">
+	<div class="span1">
+		<img src="http://t2.baidu.com/it/u=2979729822,2153618777&fm=0&gp=0.jpg" />
+	</div>
+	<div class="span11">
+		<p class="tweet-author"><%= tweet.user.name %></p>
+		<p class="tweet-text"><%= tweet.content %></p>
+	</div>
+	
+	<div class="row">
+		<div class="span12">
+			<a class="btn btn-mini pull-right">Retweet</a>
+			<a class="btn btn-mini pull-right">Comment</a>
+		</div>
+	</div>
+</div>
+
+<% end %>
+
+<%= will_paginate @tweets %>
+
+<% else %>
+
+<p class="center">There are no tweets yet. </p>
+
+<% end %>
+
+
+
+<%
+	
+=begin
 <hr />
 <div class="row">
 	<div class="span1">
@@ -58,3 +95,7 @@
 		</div>
 	</div>
 </div>
+
+=end
+
+%>
