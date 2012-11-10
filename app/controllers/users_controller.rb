@@ -12,14 +12,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:success] = "User successfully deleted. "
-    redirect_to users_path
+    redirect_to users_url
   end
   
   def create
     @user = User.new(params[:user])
     
     if @user.save then
-      redirect_to users_path
+      sign_in @user
+      redirect_to users_url
     else
       render 'new'
     end

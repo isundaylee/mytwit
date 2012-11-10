@@ -1,20 +1,9 @@
 <div class="row">
-		</div>
-
-<div class="row">
 	<div class="span6 offset3">
 		<div class="well">
-			<h1 class="center">New User</h1>
+			<h1 class="center">Register</h1>
 			
-			<% if @user.errors.any? %>
-				<div class="alert alert-error">
-				<% @user.errors.full_messages.each do |error| %>
-					<%= error %><br />
-				<% end %>
-				</div>
-			<% else %>
-				<br />
-			<% end %>
+			<%= render 'common/error_messages', errors: @user.errors.full_messages %>
 			
 			<%= form_for(@user, builder: BootstrapFormBuilder) do |f| %>
 
@@ -23,9 +12,9 @@
 			<%= f.password_field :password, placeholder: 'Password' %>
 			<%= f.password_field :password_confirmation, placeholder: 'Password Confirmation' %><br />
 
-			<%= f.submit %>
+			<%= f.submit 'Submit' %>
+			
+			<% end %>
 		</div>
 	</div>
 </div>
-
-<% end %>

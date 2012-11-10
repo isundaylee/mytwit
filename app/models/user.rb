@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
+  before_save :downcase_email
+  before_save :create_remember_token
   has_secure_password
   
   EMAIL_REGEXP = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
@@ -8,12 +10,14 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6}
   validates :password_confirmation, presence: true
   
-  before_save :generate_password_digest
-  
   private
-  
-    def generate_password_digest
-      
+    
+    def downcase_email
+      self.email = self.email.downcase
+    end
+    
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
     end
   
 end

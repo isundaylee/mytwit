@@ -1,0 +1,9 @@
+<% if errors && errors.any? %>
+	<div class="alert alert-error">
+	<% errors.each do |error| %>
+		<%= error %><br />
+	<% end %>
+	</div>
+<% else %>
+	<br />
+<% end %>

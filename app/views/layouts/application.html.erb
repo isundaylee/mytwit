@@ -11,9 +11,15 @@
 	<div class="navbar navbar-inverse navbar-static-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="#">MyTwit</a>
+				<%= link_to 'MyTwit', root_path, class: 'brand' %>
 				<ul class="nav">
 					<li><%= link_to 'Users', users_path %></li>
+					<% if signed_in? then %>
+						<li><%= link_to 'Logout', signout_path, method: :delete %></li>
+					<% else %>
+						<li><%= link_to 'Register', signup_path %></li>
+						<li><%= link_to 'Login', signin_path %></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
@@ -30,7 +36,9 @@
 			</div>
 		</div>
 		<%= yield %>
+		<%= debug(params) %>
 	</div>
+
 
 </body>
 </html>

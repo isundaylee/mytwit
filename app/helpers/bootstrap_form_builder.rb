@@ -8,8 +8,8 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     return wrap_field(super(method, options), options)
   end
 
-  def submit(options = {})
-    return wrap_field(super(options.merge({class: 'btn btn-primary btn-large'})), options)
+  def submit(value = nil, options = {})
+    return wrap_field(super(value, options.merge({class: 'btn btn-primary btn-large'})), options)
   end
 
   private
