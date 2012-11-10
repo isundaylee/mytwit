@@ -1,0 +1,26 @@
+<h1 class="center">Users List</h1><br />
+
+<% if @users.empty? %>
+
+	<p class="center">There are currently no user. </p>
+	
+<% else %>
+
+	<table class="table table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Actions</th>
+		</tr>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.email %></td>
+			<td><%= link_to 'Delete User', user, class: 'btn btn-mini', method: :delete %></td>
+		</tr>
+		<% end %>
+	</table>
+	
+	<%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+	
+<% end %>
