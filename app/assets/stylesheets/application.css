@@ -95,3 +95,7 @@ table td a.btn {
 .hidden {
 	display: none;
 }
+
+.timeline-avatar {
+	margin: 0 20px;
+}

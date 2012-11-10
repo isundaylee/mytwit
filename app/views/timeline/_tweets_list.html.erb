@@ -8,7 +8,7 @@
 		<%= avatar_for(tweet.user, size: "200x200") %>
 	</div>
 	<div class="span11">
-		<p class="tweet-author"><%= tweet.user.name %><small class="tweet-timecode pull-right"><%= tweet.created_at %></small></p>
+		<p class="tweet-author"><%= link_to tweet.user.name, show_timeline_path(tweet.user) %><small class="tweet-timecode pull-right"><%= tweet.created_at %></small></p>
 		<p class="tweet-text"><%= html_codify tweet.content %></p>
 	</div>
 	
