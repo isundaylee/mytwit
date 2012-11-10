@@ -16,8 +16,8 @@
    text-align:center;
 }
 
-input {
-	width: 300px !important;
+.form-regular input {
+	width: 300px !important; 
 }
 
 #main_container {
@@ -32,4 +32,18 @@ table td a.btn {
 
 .debug_dump {
 	margin-top: 20px;
+}
+
+.debug {
+	background: red;
+}
+
+.tweetsheet-button {
+	width: 100% !important; 
+	display: block !important;
+	margin-bottom: 10px !important;
+}
+
+.tweetsheet-sheet {
+	width: 690px !important;
 }

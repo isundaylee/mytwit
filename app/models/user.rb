@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  
+  has_many :tweets
+  
   attr_accessible :email, :name, :password, :password_confirmation
   before_save :downcase_email
   before_save :create_remember_token

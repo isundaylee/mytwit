@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
-  before_filter :require_admin, only: [:destroy]
-  before_filter :require_signed_in, only: [:edit]
+  before_filter :require_admin, only: [:index, :destroy]
+  before_filter :require_signed_in, only: [:edit, :update]
   
   def index
     @users = User.all

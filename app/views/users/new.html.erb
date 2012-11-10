@@ -5,7 +5,7 @@
 			
 			<%= render 'common/error_messages', errors: @user.errors.full_messages %>
 			
-			<%= form_for(@user, builder: BootstrapFormBuilder) do |f| %>
+			<%= form_for(@user, builder: BootstrapFormBuilder, html: {class: "form-regular"}) do |f| %>
 
 			<%= f.text_field :name, placeholder: 'Name' %>
 			<%= f.text_field :email, placeholder: 'Email' %>

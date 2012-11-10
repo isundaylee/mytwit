@@ -1,12 +1,17 @@
 Mytwit::Application.routes.draw do
+  get "pages/homepage"
+
   resources :users, only: [:index, :show, :new, :create, :destroy, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :tweets, only: [:create]
   
-  root to: 'users#index'
+  root to: 'pages#homepage'
   
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  
+  get '/timeline', to: 'timeline#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
