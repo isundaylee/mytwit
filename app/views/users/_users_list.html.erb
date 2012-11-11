@@ -1,0 +1,18 @@
+<% if users.any? %>
+
+<table class="table table-bordered">
+
+	<% users.each do |user| %>
+	<tr>
+		<td>
+			<%= link_to user.name, show_timeline_path(user) %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<% else %>
+
+<p class="user-show-section-text"><%= none_text %></p>
+
+<% end %>

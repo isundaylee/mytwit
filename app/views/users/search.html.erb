@@ -1,0 +1,26 @@
+<h1>Search result for "<%= @query %>"</h1>
+
+<hr />
+
+<% if @users.any? %>
+
+<% @users.each do |user| %>
+
+<div class="clearfix">
+	<%= avatar_for user, size: '100x100', class: 'search-user-avatar pull-right' %>
+	<h4><%= user.name %></h4>
+</div>
+
+<hr />
+
+<% end %>
+
+<%= will_paginate @users %>
+
+<% else %>
+
+<h3 class="center">No matches found. </h3>
+
+<% end %>
+
+<hr />

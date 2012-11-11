@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_filter :require_signed_in, only: [:edit, :update, :edit_avatar, :update_avatar, :follow, :unfollow]
   around_filter :rescue_user_not_found, only: [:destroy, :edit, :update, :show, :edit_avatar, :update_avatar, :follow, :unfollow]
   
+  USER_SEARCH_RESULTS_PER_PAGE = 5
+  
   def index
     @users = User.all
   end
@@ -24,7 +26,8 @@ class UsersController < ApplicationController
     
     if @user.save then
       sign_in @user
-      redirect_to users_url
+      flash[:success] = "Your account is successfully created. "
+      redirect_to root_url
     else
       render 'new'
     end
@@ -100,6 +103,15 @@ class UsersController < ApplicationController
       flash[:warning] = "You haven't followed this user yet. "
     end
     redirect_to show_timeline_url(@user)
+  end
+  
+  def search
+    @query = params[:search][:query]
+    if @query.empty?
+      @users = []
+    else
+      @users = User.where("email like ? OR name like ?", '%' + @query + '%', '%' + @query + '%').order('created_at DESC').paginate(page: params[:page], per_page: USER_SEARCH_RESULTS_PER_PAGE)
+    end
   end
   
   private

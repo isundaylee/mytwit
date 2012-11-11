@@ -8,6 +8,10 @@ Mytwit::Application.routes.draw do
       post 'follow'
       post 'unfollow'
     end
+    
+    collection do 
+      post 'search'
+    end
   end
     
   resources :sessions, only: [:new, :create, :destroy]

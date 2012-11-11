@@ -121,3 +121,15 @@ table td a.btn {
 .timeline-section-button {
 	margin-top: 20px;
 }
+
+.show-user-avatar {
+	margin: 0 20px;
+}
+
+.show-user-description {
+	color: gray;
+}
+
+.search-user-avatar {
+	margin-right: 20px; 
+}

@@ -1,0 +1,23 @@
+<div class="clearfix">
+	<%= avatar_for @user, size: "150x150", class: 'show-user-avatar pull-right' %>
+	<h1><%= @user.name %></h1>
+	<p class="show-user-description"><%= @user.description %></p>
+	<p class="show-user-info">
+		<%= pluralize(@user.tweets.count, 'tweet') %>, 
+		<%= pluralize(@user.followers.count, 'follower') %>, 
+		<%= pluralize(@user.followees.count, 'followee') %>
+	</p>
+</div>
+
+
+<div class="row">
+	<div class="span6">
+		<h3>Followers</h3>
+		<%= render 'users_list', users: @user.followers, none_text: 'No followers yet. ' %>
+	</div>
+	
+	<div class="span6">
+		<h3>Followees</h3>
+		<%= render 'users_list', users: @user.followees, none_text: 'No followees yet. ' %>
+	</div>
+</div>
