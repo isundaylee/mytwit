@@ -1,8 +1,12 @@
 class User < ActiveRecord::Base
   
   has_many :tweets
+  has_many :followings, foreign_key: 'follower_id', class_name: 'Follow', dependent: :destroy
+  has_many :followees, through: :followings
+  has_many :followedbys, foreign_key: 'followee_id', class_name: 'Follow', dependent: :destroy
+  has_many :followers, through: :followedbys
   
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :description
   before_save :downcase_email
   before_save :create_remember_token
   before_save :save_avatar
@@ -13,6 +17,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: {with: EMAIL_REGEXP}, uniqueness: {case_sensitive: false}
   validates :password, presence: true, length: {minimum: 6}
   validates :password_confirmation, presence: true
+  validates :description, length: {maximum: 500}
   
   AVATAR_STORE_DIR = File.join Rails.root, 'public', 'avatar_store'
   

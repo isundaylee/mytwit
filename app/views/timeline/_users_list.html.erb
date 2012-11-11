@@ -1,0 +1,17 @@
+<div>
+
+<% if users.any? %>
+
+<% users.first(6).each do |user| %>
+
+<%= link_to avatar_for(user, class: 'timeline-section-avatar'), show_timeline_path(user), title: user.name %>
+
+<% end %>
+
+<% else %>
+
+<p class="timeline-section-text"><%= none_text %></p>
+
+<% end %>
+
+</div>

@@ -1,6 +1,29 @@
 <div class="clearfix">
-	<%= avatar_for(@user, class: "timeline-avatar pull-right", size: "150x150") %>
-	<h1><%= @user.name %>'s Timeline</h1>
+	<div>
+		<%= avatar_for(@user, class: "timeline-avatar pull-right", size: "150x150") %>
+		<h1><%= @user.name %>'s Timeline</h1>
+		<p class="timeline-description"><%= @user.description %></p>
+		<p class="timeline-info">
+			<%= pluralize(@user.tweets.count, 'tweet') %>, 
+			<%= pluralize(@user.followers.count, 'follower') %>, 
+			<%= pluralize(@user.followees.count, 'followee') %>
+		</p>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<p class="timeline-section-title">Following <%= link_to 'see all', user_path(@user) %></p>
+			<%= render 'users_list', users: @user.followees, none_text: 'No followees yet. ' %>
+		</div>
+		<div class="span4">
+			<p class="timeline-section-title">Followed by <%= link_to 'see all', user_path(@user) %></p>
+			<%= render 'users_list', users: @user.followers, none_text: 'No followers yet. ' %>
+		</div>
+	</div>
+	<% if has_followed(@user) %>
+		<%= link_to 'Unfollow', unfollow_user_path(@user), method: :post, class: 'btn timeline-section-button' %>
+	<% else %>
+		<%= link_to 'Follow', follow_user_path(@user), method: :post, class: 'btn btn-primary timeline-section-button' %>
+	<% end %>
 </div>
 
 <%= render('tweets_list', tweets: @tweets) %>

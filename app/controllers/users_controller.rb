@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   
   before_filter :require_admin, only: [:index, :destroy]
-  before_filter :require_signed_in, only: [:edit, :update, :edit_avatar, :update_avatar]
-  around_filter :rescue_user_not_found, only: [:destroy, :edit, :update, :show, :edit_avatar, :update_avatar]
+  before_filter :require_signed_in, only: [:edit, :update, :edit_avatar, :update_avatar, :follow, :unfollow]
+  around_filter :rescue_user_not_found, only: [:destroy, :edit, :update, :show, :edit_avatar, :update_avatar, :follow, :unfollow]
   
   def index
     @users = User.all
@@ -68,6 +68,38 @@ class UsersController < ApplicationController
     end
 
     redirect_to edit_avatar_user_url(@user)
+  end
+  
+  def follow
+    @user = User.find(params[:id])
+    @cu = current_user
+    existing = @cu.followees.where({id: @user.id}).first
+    if @user == @cu
+      flash[:warning] = 'You cannot follow yourself. '
+    elsif existing
+      flash[:warning] = 'You have already followed this user. '
+    else
+      @cu.followees << @user
+      @cu.save validate: false
+      sign_in @cu
+      flash[:success] = 'You have successfully followed this user. '
+    end
+    redirect_to show_timeline_url(@user)
+  end
+  
+  def unfollow
+    @user = User.find(params[:id])
+    @cu = current_user
+    existing = @cu.followees.where({id: @user.id}).first
+    if existing
+      @cu.followees.delete @user
+      @cu.save validate: false
+      sign_in @cu
+      flash[:success] = 'You have successfully unfollowed this user. '
+    else
+      flash[:warning] = "You haven't followed this user yet. "
+    end
+    redirect_to show_timeline_url(@user)
   end
   
   private

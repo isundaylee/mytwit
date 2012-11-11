@@ -4,6 +4,10 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     return wrap_field(super(method, options), options)
   end
   
+  def text_area(method, options = {})
+    return wrap_field(super(method, options), options)
+  end
+  
   def password_field(method, options = {})
     return wrap_field(super(method, options), options)
   end

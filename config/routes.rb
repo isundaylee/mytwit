@@ -5,6 +5,8 @@ Mytwit::Application.routes.draw do
     member do
       get 'edit_avatar'
       post 'update_avatar'
+      post 'follow'
+      post 'unfollow'
     end
   end
     

@@ -20,6 +20,10 @@
 	width: 300px !important; 
 }
 
+.form-regular textarea {
+	width: 300px !important;
+}
+
 #main_container {
 	padding: 20px 0;
 }
@@ -98,4 +102,22 @@ table td a.btn {
 
 .timeline-avatar {
 	margin: 0 20px;
+}
+
+.timeline-description {
+	color: gray;
+}
+
+.timeline-section-title {
+	font-weight: bold; 
+}
+
+.timeline-section-avatar {
+	width: 40px; 
+	height: 40px;
+	display: inline;
+}
+
+.timeline-section-button {
+	margin-top: 20px;
 }
