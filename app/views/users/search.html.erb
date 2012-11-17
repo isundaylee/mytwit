@@ -1,26 +1,33 @@
 <h1>Search result for "<%= @query %>"</h1>
 
-<hr />
-
 <% if @users.any? %>
 
 <% @users.each do |user| %>
 
-<div class="clearfix">
-	<%= avatar_for user, size: '100x100', class: 'search-user-avatar pull-right' %>
-	<h4><%= user.name %></h4>
-</div>
-
 <hr />
+
+<div class="clearfix user-search-row">
+	<%= avatar_for user, size: '100x100', class: 'search-user-avatar pull-right' %>
+	<h4 class="user-search-user-name"><%= link_to user.name, user_url(user) %></h4>
+	<p class="user-search-user-description"><%= description_for user %></p>
+	<a class="btn btn-mini user-search-button-placeholder">aaaa</a>
+	<% if has_followed(user) %>
+	    <%= link_to 'Unfollow', unfollow_user_path(user), class: 'btn btn-mini user-search-button', method: :post %>
+    <% else %>
+    	<%= link_to 'Follow', follow_user_path(user), class: 'btn btn-mini user-search-button', method: :post %>
+    <% end %>
+</div>
 
 <% end %>
 
-<%= will_paginate @users %>
-
 <% else %>
+
+<hr />
 
 <h3 class="center">No matches found. </h3>
 
 <% end %>
 
 <hr />
+
+<%= will_paginate @users %>

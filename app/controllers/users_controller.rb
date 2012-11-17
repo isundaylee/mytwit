@@ -106,11 +106,12 @@ class UsersController < ApplicationController
   end
   
   def search
-    @query = params[:search][:query]
+    @query = params[:query]
     if @query.empty?
       @users = []
     else
-      @users = User.where("email like ? OR name like ?", '%' + @query + '%', '%' + @query + '%').order('created_at DESC').paginate(page: params[:page], per_page: USER_SEARCH_RESULTS_PER_PAGE)
+      term = "%#{@query}%"
+      @users = User.where("email like ? OR name like ?", term, term).order('created_at DESC').paginate(page: params[:page], per_page: USER_SEARCH_RESULTS_PER_PAGE)
     end
   end
   

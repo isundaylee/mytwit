@@ -38,8 +38,8 @@
 								</ul>
 							</li>
 						<% end %>
-						<%= form_for :search, url: search_users_path, html: {class: 'navbar-search'} do |f| %>
-							<%= f.text_field :query, class: "search-query", placeholder: 'Search user by name or email. ' %>
+						<%= form_tag search_users_path, method: 'get', class: 'navbar-search' do %>
+							<%= text_field_tag 'query', '', class: "search-query", placeholder: 'Search user by name or email. ' %>
 						<% end %>
 					<% else %>
 						<li><%= link_to 'Register', signup_path %></li>

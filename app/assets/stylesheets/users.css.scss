@@ -1,3 +1,21 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-search-row {
+    position: relative;
+}
+
+.user-search-button {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.user-search-button-placeholder {
+    opacity: 0;
+}
+
+.user-search-row img {
+    margin-left: 20px;
+}

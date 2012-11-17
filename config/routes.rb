@@ -10,7 +10,7 @@ Mytwit::Application.routes.draw do
     end
     
     collection do 
-      post 'search'
+      get 'search'
     end
   end
     

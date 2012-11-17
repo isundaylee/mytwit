@@ -2,7 +2,7 @@
 	<div>
 		<%= avatar_for(@user, class: "timeline-avatar pull-right", size: "150x150") %>
 		<h1><%= @user.name %>'s Timeline</h1>
-		<p class="timeline-description"><%= @user.description %></p>
+		<p class="timeline-description"><%= description_for(@user) %></p>
 		<p class="timeline-info">
 			<%= pluralize(@user.tweets.count, 'tweet') %>, 
 			<%= pluralize(@user.followers.count, 'follower') %>, 
