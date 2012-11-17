@@ -1,51 +1,17 @@
 <h1>Timeline</h1><br />
 
 <div class="row">
-			<%= form_for :tweet, url: tweets_path do |f| %>
-			<div class="span10">
-				<%= f.text_area :content, rows: 6, class: "tweetsheet-sheet", value: flash[:saved_tweet_content] %>
-			</div>
-			<div class="span2">
-				<%= f.submit 'Tweet!', class: "btn btn-primary tweetsheet-button" %>
-				<button class="btn btn-primary tweetsheet-button" id="clear_button">Clear</button>
-				<small class="center tweetsheet-wordcount tweetsheet-wordcount"><span id="wordcount">140</span> chars remaining. </small>
-			</div>
-			<% end %>
+	<%= form_for :tweet, url: tweets_path do |f| %>
+        <div class="span10">
+        	<%= f.text_area :content, rows: 6, class: "tweetsheet-sheet", value: flash[:saved_tweet_content] %>
+        </div>
+        <div class="span2">
+        	<%= f.submit 'Tweet!', class: "btn btn-primary tweetsheet-button" %>
+        	<button class="btn btn-primary tweetsheet-button" id="tweetsheet-clear-button">Clear</button>
+        	<small class="center tweetsheet-wordcount tweetsheet-wordcount"><span id="tweetsheet-remaining">140</span> chars remaining. </small>
+        </div>
+	<% end %>
 </div>
-
-<script>
-
-function on_tweet_content_changed()
-{
-	var wordcount = $('.tweetsheet-wordcount'); 
-	var content = $('.tweetsheet-sheet').val();
-	var length = content.length; 
-	var remaining = 140 - length; 
-	var wordcount_span = $('#wordcount'); 
-	wordcount_span.text(remaining); 
-	if (remaining <= 10) {
-		wordcount.addClass('tweetsheet-wordcount-alerting');
-	} else {
-		wordcount.removeClass('tweetsheet-wordcount-alerting'); 
-	}
-}
-
-function on_clear_button_clicked()
-{
-	var confirmed = window.confirm("Do you really want to clear the tweet content? "); 
-	
-	if (confirmed) {
-		$('.tweetsheet-sheet').val(''); 
-	}
-	
-	return false; 
-}
-
-$('.tweetsheet-sheet').bind('input propertychange', on_tweet_content_changed); 
-$('#clear_button').click(on_clear_button_clicked); 
-on_tweet_content_changed(); 
-
-</script>
 
 <%= render('tweets_list', tweets: @tweets) %>
 
