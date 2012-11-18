@@ -1,0 +1,5 @@
+<%= form_tag repost_tweet_url(@tweet, format: :json), id: "repost-form-#{@tweet.id}", class: 'clearfix repost-form compact' do %>
+<%= text_field_tag 'repost_message', '', id: "repost-message-field-#{@tweet.id}", class: 'pull-right repost-message-field', placeholder: 'Retweet message. ' %>
+<% end %>
+<div id="repost-text-container-<%= @tweet.id %>">
+</div>

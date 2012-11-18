@@ -10,13 +10,43 @@
 	<div class="span11">
 		<p class="tweet-author"><%= link_to tweet.user.name, show_timeline_path(tweet.user) %><small class="tweet-timecode pull-right"><%= tweet.created_at %></small></p>
 		<p class="tweet-text"><%= html_codify tweet.content %></p>
+		<% tweet.repost_path.each do |elem| %>
+			<p class="tweet-precedent">
+				Retweeted by 
+				<%= link_to "#{elem.user.name}: ", show_timeline_path(elem.user) %>
+				<%= html_codify elem.content %>
+				<small class="tweet-timecode pull-right"><%= elem.created_at%></small>
+			</p>
+		<% end %>
+	</div>
+</div>
+	
+<% if !tweet.origin.nil? %>
+	<div class="row">
+		<div class="offset1 span11">
+			<div class="row well tweet-origin">
+				<div class="span1">
+					<%= avatar_for(tweet.origin.user, size: "200x200") %>
+				</div>
+				<div class="span9">
+					<p class="tweet-author"><%= link_to tweet.origin.user.name, show_timeline_path(tweet.origin.user) %><small class="tweet-timecode pull-right"><%= tweet.origin.created_at %></small></p>
+					<p class="tweet-text"><%= html_codify tweet.origin.content %></p>
+				</div>
+			</div>
+		</div>
 	</div>
 	
-	<div class="row">
-		<div class="span12">
-			<a class="btn btn-mini pull-right tweet-button">Retweet</a>
-			<a class="btn btn-mini pull-right tweet-button">Comment</a>
-		</div>
+<% end %>
+
+<div class="row">
+	<div class="offset1 span11 repost-sheet" id="repost-sheet-<%= tweet.id %>">
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<a class="btn btn-mini pull-right repost-button" id="repost-button-<%= tweet.id %>">Retweet</a>
+		<a class="btn btn-mini pull-right comment-button" id="comment-button-<%= tweet.id %>">Comment</a>
 	</div>
 </div>
 

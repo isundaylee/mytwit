@@ -15,7 +15,12 @@ Mytwit::Application.routes.draw do
   end
     
   resources :sessions, only: [:new, :create, :destroy]
-  resources :tweets, only: [:create]
+  resources :tweets, only: [:create] do
+    member do
+      get 'retweet'
+      post 'repost'
+    end
+  end
   
   root to: 'pages#homepage'
   

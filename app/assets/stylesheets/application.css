@@ -72,7 +72,7 @@ table td a.btn {
 	font-weight: normal;
 }
 
-.tweet-button {
+.repost-button, .comment-button {
 	margin-left: 10px;
 }
 
@@ -132,4 +132,20 @@ table td a.btn {
 
 .search-user-avatar {
 	margin-right: 20px; 
+}
+
+.color-error {
+	color: red !important; 
+}
+
+.color-warning {
+	color: yellow !important; 
+}
+
+.color-success {
+	color: green !important;
+}
+
+.compact {
+	margin: 0 !important;
 }
