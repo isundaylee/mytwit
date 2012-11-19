@@ -3,19 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .repost-sheet {
-	margin-bottom: 10px; 
+  margin-bottom: 10px; 
 }
 
 .repost-sheet-text {
-	color: grey; 
-	font-size: 12px;
-	text-align: right;
+  color: grey; 
+  font-size: 12px;
+  text-align: right;
 }
 
 .tweet-origin {
-	margin-top: 20px; 
+  margin-top: 20px; 
 }
 
 .tweet-precedent a {
-	font-weight: bold
+  font-weight: bold
+}
+
+#timeline-new-tweets {
+  text-align: center; 
+  margin-bottom: -10px; 
+  display: none; 
 }

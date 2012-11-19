@@ -29,7 +29,7 @@ Mytwit::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   
   get '/timeline', to: 'timeline#index'
-  
+  get '/timeline/updates', to: 'timeline#updates', as: :timeline_updates
   match '/timeline/:id', to: 'timeline#show', as: :show_timeline
   
   # The priority is based upon order of creation:

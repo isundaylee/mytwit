@@ -266,6 +266,10 @@
   timeline_path: function(options) {
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"timeline",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
+// timeline_updates => /timeline/updates(.:format)
+  timeline_updates_path: function(options) {
+  return Utils.build_path([], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"timeline",false]],[7,"/",false]],[6,"updates",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
+  },
 // tweets => /tweets(.:format)
   tweets_path: function(options) {
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"tweets",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);

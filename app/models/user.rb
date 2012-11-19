@@ -32,6 +32,13 @@ class User < ActiveRecord::Base
     end
   end
     
+  def has_followed?(user)
+    !self.followees.where({id: user.id}).first.nil?
+  end
+
+  def has_mutual_relationship_with?(other)
+    self.has_followed?(other) && other.has_followed?(self)
+  end
   
   private
     

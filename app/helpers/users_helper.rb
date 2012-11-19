@@ -12,10 +12,14 @@ module UsersHelper
     end
   end
   
-  def has_followed(user)
-    nil unless signed_in?
-    @cu = current_user
-    current_user.followees.where({id: user.id}).first
+  def has_followed?(user)
+    false unless signed_in?
+    current_user.has_followed?(user)
+  end
+
+  def has_mutual_relationship_with?(b)
+    false unless signed_in?
+    current_user.has_mutal_relationship_with?(b)
   end
   
 end
