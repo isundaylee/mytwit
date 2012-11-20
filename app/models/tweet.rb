@@ -6,8 +6,10 @@ class Tweet < ActiveRecord::Base
   
   attr_accessible :content
   
+  EMAIL_REGEXP = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
   validates :content, presence: true, length: {minimum: 5, maximum: 140}
   before_save :remove_linebreaks
+  before_save :translate_mentions
   
   RETWEET_PATH_MAX_LENGTH = 5
   
@@ -28,6 +30,18 @@ class Tweet < ActiveRecord::Base
   
     def remove_linebreaks
       self.content = self.content.split("\n").join(' ')
+    end
+
+    def translate_mentions
+      reg = Regexp::new(/@/.source + '(' + EMAIL_REGEXP.source + ')')
+      self.content.gsub! reg do |mention|
+        user = User.find_by_email(reg.match(mention)[1])
+        if user
+          "###{user.id}##"
+        else
+          mention
+        end
+      end
     end
   
 end
