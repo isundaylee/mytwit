@@ -19,6 +19,8 @@ class Tweet < ActiveRecord::Base
       result << current
       current = current.precedent
     end
+    # Append a nil to signal that there are omitted terms.
+    result << nil if !current.nil? and current != self.origin
     return result
   end
   

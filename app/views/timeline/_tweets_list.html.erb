@@ -11,12 +11,18 @@
 		<p class="tweet-author"><%= link_to tweet.user.name, show_timeline_path(tweet.user) %><small class="tweet-timecode pull-right"><%= tweet.created_at %></small></p>
 		<p class="tweet-text"><%= html_codify tweet.content %></p>
 		<% tweet.repost_path.each do |elem| %>
+          <% if elem.nil? %>
+            <p class="tweet-precedent">
+              ......
+            </p>
+          <% else %>
 			<p class="tweet-precedent">
 				Retweeted by 
 				<%= link_to "#{elem.user.name}: ", show_timeline_path(elem.user) %>
 				<%= html_codify elem.content %>
 				<small class="tweet-timecode pull-right"><%= elem.created_at%></small>
 			</p>
+          <% end %>
 		<% end %>
 	</div>
 </div>
