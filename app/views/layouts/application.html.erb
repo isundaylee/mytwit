@@ -3,77 +3,78 @@
 <head>
   <title>MyTwit</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= "#{params[:controller]}_#{params[:action]}" %>">
 
-	<div class="navbar navbar-inverse navbar-static-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<%= link_to 'MyTwit', root_path, class: 'brand' %>
-				<ul class="nav">
-					<li><%= link_to 'Timeline', timeline_path %></li>
-				</ul>
-				<ul class="nav pull-right">
-					<% if signed_in? then %>
-						<li><a>Welcome, <%= current_user.name %><%= ' (*)' if signed_in_as_admin? %></a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><%= link_to 'My Profile', user_path(current_user) %></li>
-								<li><%= link_to 'My Timeline', show_timeline_path(current_user) %></li>
-								<li class="divider"></li>
-								<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
-								<li><%= link_to 'Edit Avatar', edit_avatar_user_path(current_user) %></li>
-								<li class="divider"></li>
-								<li><%= link_to 'Logout', signout_path, method: :delete %></li>
-							</ul>
-						</li>
-						<% if signed_in_as_admin? %>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrator <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><%= link_to 'Users', users_path %></li>
-								</ul>
-							</li>
-						<% end %>
-						<%= form_tag search_users_path, method: 'get', class: 'navbar-search' do %>
-							<%= text_field_tag 'query', '', class: "search-query", placeholder: 'Search user by name or email. ' %>
-						<% end %>
-					<% else %>
-						<li><%= link_to 'Register', signup_path %></li>
-						<li><%= link_to 'Login', signin_path %></li>
-					<% end %>
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-	<div class="container" id="main_container">
-		<div class="row">
-			<div class="span12">
-				<% flash.each do |key, value| %>
-				<% next unless ['success', 'warning', 'info', 'error'].include?(key.to_s) %>
-				<div class="alert alert-<%= key.to_s %>">
-					<%= value %>
-				</div>
-				<% end %>
-			</div>
-		</div>
-		<%= yield %>
-	</div>
+  <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+          <div class="container">
+              <%= link_to 'MyTwit', root_path, class: 'brand' %>
+              <ul class="nav">
+                  <li><%= link_to 'Timeline', timeline_path %></li>
+              </ul>
+              <ul class="nav pull-right">
+                  <% if signed_in? then %>
+                      <li><a>Welcome, <%= current_user.name %><%= ' (*)' if signed_in_as_admin? %></a></li>
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><%= link_to 'My Profile', user_path(current_user) %></li>
+                              <li><%= link_to 'My Timeline', show_timeline_path(current_user) %></li>
+                              <li class="divider"></li>
+                              <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+                              <li><%= link_to 'Edit Avatar', edit_avatar_user_path(current_user) %></li>
+                              <li class="divider"></li>
+                              <li><%= link_to 'Logout', signout_path, method: :delete %></li>
+                          </ul>
+                      </li>
+                      <% if signed_in_as_admin? %>
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrator <b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                                  <li><%= link_to 'Users', users_path %></li>
+                              </ul>
+                          </li>
+                      <% end %>
+                      <%= form_tag search_users_path, method: 'get', class: 'navbar-search' do %>
+                          <%= text_field_tag 'query', '', class: "search-query", placeholder: 'Search user by name or email. ' %>
+                      <% end %>
+                  <% else %>
+                      <li><%= link_to 'Register', signup_path %></li>
+                      <li><%= link_to 'Login', signin_path %></li>
+                  <% end %>
+              </ul>
+          </div>
+      </div>
+  </div>
+  
+  <div class="container" id="main_container">
+      <div class="row">
+          <div class="span12">
+              <% flash.each do |key, value| %>
+              <% next unless ['success', 'warning', 'info', 'error'].include?(key.to_s) %>
+              <div class="alert alert-<%= key.to_s %>">
+                  <%= value %>
+              </div>
+              <% end %>
+          </div>
+      </div>
+      <%= yield %>
+  </div>
 
-	<footer class="footer">
-		<div class="container">
-			<p class="center">Designed and implemented by Jiahao Li</p>
-		</div>
-	</footer>
-	
-	<div class="container">
-		<%= debug(params) %>
-		<%= debug(current_user) %>
-	</div>
+  <footer class="footer">
+      <div class="container">
+          <p class="center">Designed and implemented by Jiahao Li</p>
+      </div>
+  </footer>
+  
+  <div class="container">
+      <%= debug(params) %>
+      <%= debug(current_user) %>
+  </div>
+
+  <%= javascript_include_tag "application" %>
 
 </body>
 </html>

@@ -6,15 +6,9 @@
 
 <div class="input-append center">
    <input id="avatar_cover" class="input-large" type="text">
-   <a class="btn" onclick="$('input[id=user_avatar]').click();">Browse</a>
+   <a class="btn" id="avatar_upload_button">Browse</a>
 </div><br />
  
-<script type="text/javascript">
-$('input[id=user_avatar]').change(function() {
-   $('#avatar_cover').val($(this).val());
-}); 
-</script>
-
 <p class="center"><%= f.submit 'Change Avatar', class: "btn btn-primary" %></p>
 
 <% end %>
