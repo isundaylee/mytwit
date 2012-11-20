@@ -10,6 +10,7 @@ class Tweet < ActiveRecord::Base
   validates :content, presence: true, length: {minimum: 5, maximum: 140}
   before_save :remove_linebreaks
   before_save :translate_mentions
+  before_save :translate_urls
   
   RETWEET_PATH_MAX_LENGTH = 5
   
@@ -41,6 +42,14 @@ class Tweet < ActiveRecord::Base
         else
           mention
         end
+      end
+    end
+
+    def translate_urls
+      reg = /http:\/\/[^\\s]*/
+      self.content.gsub! reg do |url|
+        shorturl = Shorturl.create_with_url(url).abbrev
+        "::#{shorturl}::"
       end
     end
   

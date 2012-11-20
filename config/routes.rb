@@ -21,7 +21,7 @@ Mytwit::Application.routes.draw do
       post 'repost'
     end
   end
-  
+
   root to: 'pages#homepage'
   
   match '/signup', to: 'users#new'
@@ -31,6 +31,8 @@ Mytwit::Application.routes.draw do
   get '/timeline', to: 'timeline#index'
   get '/timeline/updates', to: 'timeline#updates', as: :timeline_updates
   match '/timeline/:id', to: 'timeline#show', as: :show_timeline
+
+  get '/u/:abbrev', to: 'shorturls#goto', as: :goto_shorturl
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

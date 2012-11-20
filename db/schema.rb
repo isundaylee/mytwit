@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118094002) do
+ActiveRecord::Schema.define(:version => 20121120064153) do
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followee_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "shorturls", :force => true do |t|
+    t.string   "abbrev"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tweets", :force => true do |t|
